@@ -1,32 +1,68 @@
-# Website Factory — Execution Plan
+# Execution Plan
 
-## Current Objective
-Build the first repeatable outbound and fulfillment lane for San Jose landscaping website upgrades.
+## Current workflow truth
+Website Factory is in the **Operator MVP alignment and build phase**.
 
-## Locked Build Order
-1. lock offer stack
-2. lock prospect scoring rubric
-3. build first 25-50 prospect list
-4. score weak websites
-5. shortlist best prospects
-6. prep first outreach batch
+This project now has two clean layers:
 
-## Current Reality
-- Website Factory is the main business lane.
-- Local Lead Gen is the feeder/acquisition system under Website Factory.
-- Initial niche focus is San Jose landscaping.
+### 1. Business / offer layer
+Used for:
+- prospecting
+- offer positioning
+- scoring weak websites
+- outreach angle
 
-## Senior-Operator Rule
-Do not build a messy lead list before the offer and scoring system are clear.
+### 2. Operator MVP build layer
+Used for:
+- Prospect-rooted app structure
+- workflow semantics
+- workspace route design
+- Prospect Detail as the main operating surface
 
-## Immediate Next Tasks
-- use `docs/offer-stack-v1.md` as the default sales packaging
-- use `docs/prospect-scoring-rubric-v1.md` as the default scoring model
-- create the first landscaping prospect sheet using the locked fields
-- begin scoring immediately while prospecting instead of waiting until later
+## Current implementation priority
+### In progress
+- frontend state/type alignment
+- backend enum/validation alignment
+- workspace route implementation
+- workflow semantic correction
+- doc alignment
 
-## Success Criteria
-- first 25-50 prospects collected
-- every prospect has evidence-backed scoring
-- top 10-20 weak websites are obvious
-- first outreach batch can be generated without rewriting the strategy
+### Next up
+- Prospect Detail workspace wiring
+- score/priority normalization
+- QA pass for status/route consistency
+
+## Approved semantic model
+### Prospect status = business pipeline only
+- `New Lead`
+- `Website Reviewed`
+- `Qualified`
+- `Mock Ready`
+- `Outreach Ready`
+- `Contacted`
+- `Follow-Up`
+- `Interested`
+- `Won`
+- `Lost`
+
+### Outreach status = individual outreach attempt state only
+- `draft`
+- `sent`
+- `replied`
+- `closed`
+
+### Next action = one immediate visible operator task only
+Examples:
+- `Review website`
+- `Draft mock concept`
+- `Send first outreach`
+- `Follow up Thursday`
+- `Call owner`
+
+## Rule
+Do not let these documents drift back into mixed status logic.
+
+For current implementation truth, see:
+- `README.md`
+- `CONVERSATION_STATE.md`
+- `docs/mvp-alignment.md`

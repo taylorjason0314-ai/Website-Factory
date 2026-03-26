@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Website Factory Prospect Workspace",
+  "type": "object",
+  "required": ["prospect", "review", "concept", "outreachRecords", "tasks"],
+  "properties": {
+    "prospect": {
+      "type": "object",
+      "required": ["id", "businessName", "prospectStatus", "priority", "nextAction"],
+      "properties": {
+        "id": { "type": ["string", "integer"] },
+        "businessName": { "type": "string" },
+        "prospectStatus": {
+          "type": "string",
+          "enum": ["New Lead", "Website Reviewed", "Qualified", "Mock Ready", "Outreach Ready", "Contacted", "Follow-Up", "Interested", "Won", "Lost"]
+        },
+        "outreachStatus": {
+          "type": ["string", "null"],
+          "enum": ["draft", "sent", "replied", "closed", null]
+        },
+        "totalScore": { "type": ["integer", "null"], "minimum": 0, "maximum": 100 },
+        "priority": { "type": ["string", "null"], "enum": ["High", "Medium", "Low", null] },
+        "nextAction": { "type": ["string", "null"] },
+        "nextActionDue": { "type": ["string", "null"] }
+      }
+    },
+    "review": {
+      "type": ["object", "null"],
+      "properties": {
+        "totalScore": { "type": ["integer", "null"], "minimum": 0, "maximum": 100 },
+        "design": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "mobile": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "cta": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "trust": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "branding": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "opportunity": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "topIssues": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "concept": {
+      "type": ["object", "null"],
+      "properties": {
+        "headline": { "type": ["string", "null"] },
+        "offerAngle": { "type": ["string", "null"] },
+        "sections": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": ["string", "null"] }
+      }
+    },
+    "outreachRecords": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status"],
+        "properties": {
+          "id": { "type": ["string", "integer"] },
+          "channel": { "type": ["string", "null"] },
+          "status": { "type": "string", "enum": ["draft", "sent", "replied", "closed"] },
+          "angle": { "type": ["string", "null"] },
+          "sentAt": { "type": ["string", "null"] },
+          "followUpAt": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title"],
+        "properties": {
+          "id": { "type": ["string", "integer"] },
+          "title": { "type": "string" },
+          "done": { "type": ["boolean", "null"] }
+        }
+      }
+    }
+  }
+}

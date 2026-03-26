@@ -1,48 +1,25 @@
 # Outreach Templates
 
-## Cold Email / DM — Short Version
-Hi [Name],
+## Purpose
+This is a **sales execution document**.
 
-I was looking at local landscaping businesses in San Jose and came across [Business Name]. I noticed your website could probably convert a lot better on mobile — especially around [specific issue: quote request / contact flow / trust signals / before-after presentation].
+Use it for:
+- outreach angle
+- message drafts
+- follow-up wording
 
-I help local service businesses improve their websites so more visitors turn into actual leads.
+It is not the source of truth for Prospect pipeline semantics or app architecture.
 
-If you want, I can send over a few specific ideas I’d change on your site to help bring in more clients.
+## Important workflow note
+In the Operator MVP:
+- Prospect status = business pipeline stage
+- Outreach status = individual outreach attempt state
+- Next action = one immediate visible operator task
 
-- [Your Name]
+Current outreach attempt states:
+- `draft`
+- `sent`
+- `replied`
+- `closed`
 
----
-
-## Short Audit Offer
-Hi [Name],
-
-Checked out [Business Name]'s site. I think there’s a real opportunity to improve:
-- mobile experience
-- quote/contact flow
-- trust and credibility sections
-- how clearly the site turns visitors into leads
-
-I build simple website upgrades for local businesses focused on getting more inquiries, not just looking nicer.
-
-If you want, I can send a quick breakdown of what I’d improve.
-
----
-
-## Follow-Up
-Hi [Name],
-
-Following up in case this got buried.
-
-I still think [Business Name] has a real opportunity to improve conversion from its current site, especially around [issue]. Even a few basic changes can make the site much better at turning traffic into calls and quote requests.
-
-Happy to send a quick no-pressure audit if useful.
-
----
-
-## Value Framing
-Focus on:
-- more quote requests
-- better mobile conversion
-- stronger trust with homeowners/customers
-- clearer service positioning
-- a site that helps book jobs instead of just existing online
+Use this file to improve messaging, not to redefine workflow semantics.
