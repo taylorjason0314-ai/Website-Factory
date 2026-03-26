@@ -7,10 +7,12 @@ Implemented now:
 - health route
 - `GET /prospects/:id`
 - `GET /prospects/:id/workspace`
+- `POST /prospects`
+- `PATCH /prospects/:id`
 - contract validation against shared canonical types
+- file-backed JSON persistence for prospects
 
 Not implemented yet:
-- persistence
-- POST/PATCH flows
-- migrations
-- real service/data layer beyond seeded sample data
+- database migrations
+- real review/concept/outreach/task persistence
+- production infra

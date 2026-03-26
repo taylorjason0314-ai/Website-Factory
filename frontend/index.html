@@ -3,17 +3,310 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Website Factory Frontend</title>
+    <title>Website Factory</title>
     <style>
-      body { font-family: Arial, sans-serif; padding: 24px; background: #111827; color: #f3f4f6; }
-      pre { white-space: pre-wrap; background: #1f2937; padding: 16px; border-radius: 8px; }
-      ul { line-height: 1.8; }
-      #status { color: #93c5fd; margin-bottom: 12px; }
+      :root {
+        --bg: #09111f;
+        --bg-soft: #0f1a2b;
+        --panel: rgba(15, 26, 43, 0.92);
+        --panel-2: rgba(18, 30, 49, 0.96);
+        --line: rgba(148, 163, 184, 0.18);
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --blue: #60a5fa;
+        --cyan: #22d3ee;
+        --amber: #fbbf24;
+        --green: #34d399;
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        --radius: 22px;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; }
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        background:
+          radial-gradient(circle at top, rgba(34, 211, 238, 0.14), transparent 28%),
+          radial-gradient(circle at right, rgba(96, 165, 250, 0.12), transparent 24%),
+          linear-gradient(180deg, #08101c 0%, #0b1322 100%);
+        color: var(--text);
+        padding: 18px;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+        background-size: 22px 22px;
+        opacity: 0.22;
+      }
+
+      .shell {
+        max-width: 920px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero, .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+
+      .hero {
+        padding: 22px;
+        margin-bottom: 16px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: Arial, sans-serif;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 11px;
+        color: var(--cyan);
+        margin-bottom: 12px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--cyan), var(--blue));
+        box-shadow: 0 0 16px rgba(34, 211, 238, 0.6);
+      }
+
+      h1, h2, h3, p { margin: 0; }
+      h1 {
+        font-size: clamp(32px, 8vw, 58px);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        margin-bottom: 12px;
+      }
+      .hero p {
+        max-width: 56ch;
+        color: #d7e2f0;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      #status {
+        margin-top: 14px;
+        font-family: Arial, sans-serif;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .metric {
+        background: var(--panel-2);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 14px;
+      }
+
+      .metric-label {
+        font-family: Arial, sans-serif;
+        color: var(--muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+      }
+
+      .metric-value {
+        font-size: 18px;
+        line-height: 1.25;
+      }
+
+      .panel {
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+
+      .panel h2 {
+        font-size: 22px;
+        margin-bottom: 12px;
+      }
+
+      .stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .list-card {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255,255,255,0.02);
+      }
+
+      .list-label {
+        font-family: Arial, sans-serif;
+        color: var(--muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.09);
+        background: rgba(255,255,255,0.04);
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+      }
+
+      .pill strong {
+        color: white;
+        font-weight: 600;
+      }
+
+      .section-copy {
+        color: #d5dfeb;
+        line-height: 1.6;
+      }
+
+      .field-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      label {
+        font-family: Arial, sans-serif;
+        color: var(--muted);
+        font-size: 12px;
+        display: grid;
+        gap: 6px;
+      }
+
+      input {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        background: rgba(2, 8, 23, 0.68);
+        color: white;
+        padding: 12px 14px;
+        font-size: 15px;
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      button {
+        border: none;
+        border-radius: 14px;
+        padding: 12px 14px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .primary {
+        background: linear-gradient(135deg, var(--cyan), var(--blue));
+        color: #03111f;
+      }
+
+      .secondary {
+        background: rgba(255,255,255,0.08);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .result {
+        margin-top: 10px;
+        padding: 14px;
+        border-radius: 16px;
+        background: rgba(2, 8, 23, 0.62);
+        border: 1px solid var(--line);
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        color: #dbeafe;
+      }
+
+      details {
+        border-top: 1px solid var(--line);
+        margin-top: 16px;
+        padding-top: 14px;
+      }
+
+      summary {
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+        color: var(--muted);
+      }
+
+      pre {
+        margin: 12px 0 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        font-size: 12px;
+        line-height: 1.55;
+        background: rgba(2, 8, 23, 0.7);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 14px;
+      }
+
+      @media (min-width: 768px) {
+        body { padding: 26px; }
+        .grid.two {
+          grid-template-columns: 1.1fr 0.9fr;
+          align-items: start;
+        }
+        .kpi-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
     </style>
   </head>
   <body>
-    <div id="status">Starting…</div>
-    <div id="app"></div>
+    <div class="shell">
+      <section class="hero">
+        <div class="eyebrow"><span class="dot"></span>Website Factory operator tool</div>
+        <h1>Prospect workspace</h1>
+        <p>Sharp, mobile-openable scaffold for Website Factory. The point of this build is semantic clarity first: prospect pipeline state, outreach state, priority, and next action each live in their own lane.</p>
+        <div id="status">Starting…</div>
+      </section>
+      <div id="app"></div>
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>

@@ -1,0 +1,21 @@
+[
+  {
+    "id": "prospect_vista_landscape",
+    "businessName": "Vista Landscaping",
+    "prospectStatus": "Qualified",
+    "outreachStatus": "draft",
+    "totalScore": 83,
+    "priority": "High",
+    "nextAction": "Send first outreach",
+    "nextActionDue": "2026-03-26"
+  },
+  {
+    "id": "prospect_persist_test",
+    "businessName": "Persist Test Landscaping",
+    "prospectStatus": "Qualified",
+    "outreachStatus": "sent",
+    "priority": "High",
+    "nextAction": "Follow up Thursday",
+    "nextActionDue": "2026-03-27"
+  }
+]

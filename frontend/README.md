@@ -11,10 +11,10 @@ Implemented now:
   - `nextAction`
   - `nextActionDue`
 - API call to backend workspace route
+- minimal create/patch prospect mutation panel
 
 Not implemented yet:
 - real list/detail workflow
-- forms
 - filters
 - badges beyond text rendering
 - production build tooling

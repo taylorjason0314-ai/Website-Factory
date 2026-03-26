@@ -33,6 +33,9 @@ The operator MVP should support:
 3. Mock-site concept
 4. Outreach + follow-up
 
+## Lane ownership rule
+Businesses/prospects worked in this repo belong to the **Website Factory** lane unless explicitly marked as intentional cross-lane duplicates with Local Jobs Business.
+
 ## Canonical source-of-truth docs
 ### Project identity / scope
 - `README.md`
@@ -53,19 +56,20 @@ The operator MVP should support:
 - `docs/implementation-checklist-2026-03-25.md`
 
 ## Current repo truth
-- this repo is still a **docs-only snapshot**
-- no runtime frontend/backend source tree is attached yet
-- implementation can be planned here, but runtime execution is blocked until the real codebase is attached
+- this repo now has a **runtime scaffold plus docs foundation**
+- it is not full product implementation yet
+- runtime execution has begun, but coverage is still partial
 
 ## Current implementation lane
-In progress at the contract/planning level:
-- frontend state/type alignment plan
-- backend enum/validation plan
-- workspace route contract
-- workflow semantic cleanup
-- doc alignment
+Implemented now:
+- shared canonical contract/types
+- backend scaffold
+- workspace route scaffold
+- prospect POST/PATCH mutation flow
+- file-backed JSON persistence for prospects
+- minimal frontend workspace/mutation scaffold
 
-Next up once the real codebase is attached:
-- Prospect Detail workspace wiring
-- score/priority normalization
-- QA pass for status/route consistency
+Next up:
+- prospect list view on persisted data
+- persisted outreach/review/concept/task layers
+- QA pass for status/route/workspace consistency
