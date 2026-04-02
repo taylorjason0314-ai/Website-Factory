@@ -1,4 +1,4 @@
-const base = process.env.BASE || 'http://127.0.0.1:4030';
+const base = process.env.BASE || 'http://127.0.0.1:4010';
 
 async function fetchText(url, options) {
   const response = await fetch(url, options);
