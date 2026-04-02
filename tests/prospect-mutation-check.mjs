@@ -4,6 +4,12 @@ async function asText(response) {
   return await response.text();
 }
 
+function assertStatus(label, actual, allowed) {
+  if (!allowed.includes(actual)) {
+    throw new Error(`${label} expected status ${allowed.join(" or ")}, got ${actual}`);
+  }
+}
+
 async function main() {
   const validPayload = {
     id: 'prospect_mutation_test',
@@ -22,6 +28,8 @@ async function main() {
   });
   console.log('POST_STATUS', postRes.status);
   console.log('POST_BODY', await asText(postRes));
+  // Allow replay-safe runs where fixture ID already exists.
+  assertStatus('POST_STATUS', postRes.status, [201, 409]);
 
   const invalidRes = await fetch(`${base}/prospects`, {
     method: 'POST',
@@ -35,6 +43,7 @@ async function main() {
   });
   console.log('INVALID_STATUS', invalidRes.status);
   console.log('INVALID_BODY', await asText(invalidRes));
+  assertStatus('INVALID_STATUS', invalidRes.status, [400]);
 
   const patchRes = await fetch(`${base}/prospects/prospect_mutation_test`, {
     method: 'PATCH',
@@ -49,6 +58,7 @@ async function main() {
   });
   console.log('PATCH_STATUS', patchRes.status);
   console.log('PATCH_BODY', await asText(patchRes));
+  assertStatus('PATCH_STATUS', patchRes.status, [200]);
 }
 
 main().catch((error) => {

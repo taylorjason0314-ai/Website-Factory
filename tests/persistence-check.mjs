@@ -1,5 +1,11 @@
 const base = process.env.BASE || 'http://127.0.0.1:4010';
 
+function assertStatus(label, actual, allowed) {
+  if (!allowed.includes(actual)) {
+    throw new Error(`${label} expected status ${allowed.join(" or ")}, got ${actual}`);
+  }
+}
+
 async function fetchText(url, options) {
   const response = await fetch(url, options);
   const text = await response.text();
@@ -24,10 +30,13 @@ async function main() {
   });
   console.log('POST_STATUS', result.status);
   console.log('POST_BODY', result.text);
+  // Allow replay-safe runs where fixture ID already exists.
+  assertStatus('POST_STATUS', result.status, [201, 409]);
 
   result = await fetchText(`${base}/prospects/prospect_persist_test`);
   console.log('GET_BEFORE_RESTART_STATUS', result.status);
   console.log('GET_BEFORE_RESTART_BODY', result.text);
+  assertStatus('GET_BEFORE_RESTART_STATUS', result.status, [200]);
 
   result = await fetchText(`${base}/prospects/prospect_persist_test`, {
     method: 'PATCH',
@@ -42,6 +51,7 @@ async function main() {
   });
   console.log('PATCH_STATUS', result.status);
   console.log('PATCH_BODY', result.text);
+  assertStatus('PATCH_STATUS', result.status, [200]);
 }
 
 main().catch((error) => {
